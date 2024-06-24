@@ -1,7 +1,19 @@
 import { Schema, model } from 'mongoose'
-import { , TProduct,  } from './product.interface'
+import {  TProduct, TVariants } from './product.interface'
 
-
+const variantsSchema = new Schema<TVariants>(
+  {
+    type: {
+      type: String,
+      required: [true, 'type is required'],
+    },
+    value: {
+      type: String,
+      required: [true, 'value is required'],
+    },
+  },
+  { _id: false },
+)
 
 
 const productSchema = new Schema<TProduct>({
@@ -24,6 +36,10 @@ const productSchema = new Schema<TProduct>({
   },
   tags: {
     type: [String],
+  },
+  variants: {
+    type: [variantsSchema],
+    required: [true, 'variants are required'],
   },
   
 })
