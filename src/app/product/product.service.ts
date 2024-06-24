@@ -1,6 +1,18 @@
 import { TProduct } from './product.interface'
 import { Product } from './product.model'
 
+// Ensure text index creation on Product collection
+const ensureTextIndex = async () => {
+  try {
+    await Product.collection.createIndex(
+      { name: 'text', description: 'text' },
+      { background: true },
+    )
+  } catch (error) {
+    console.error('Error creating text index:', error)
+  }
+}
+
 // Create Product Service
 const createProduct = async (payload: TProduct) => {
   const result = await Product.create(payload)
@@ -9,6 +21,7 @@ const createProduct = async (payload: TProduct) => {
 
 // Get Product Service
 const getAllProducts = async (searchTerm: unknown) => {
+  await ensureTextIndex()
   if (typeof searchTerm === 'string') {
     const result = Product.find({ $text: { $search: searchTerm } })
     return result
