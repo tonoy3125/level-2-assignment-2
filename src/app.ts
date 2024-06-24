@@ -7,13 +7,20 @@ const app: Application = express()
 app.use(express.json())
 app.use(cors())
 
-app.get('/', (req: Request, res: Response) => {
-  // let b;
+// routers
 
-  const a = 10
-  res.send(a)
+app.use('/api/v1', routes)
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('Hello World!')
 })
 
-// console.log(process.cwd());
+app.all('*', (req, res, next) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+  })
+  next()
+})
 
 export default app
