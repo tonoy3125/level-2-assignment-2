@@ -23,6 +23,20 @@ const getProductById = async (id: string) => {
   return result
 }
 
+// Update Product
+const updateProduct = async (id: string, updatedProduct: TProduct) => {
+  const result = await Product.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        ...updatedProduct,
+      },
+    },
+    { new: true },
+  )
+  return result
+}
+
 // Delete Single Product
 const deleteProduct = async (id: string) => {
   const result = await Product.findByIdAndDelete(id)
@@ -33,5 +47,6 @@ export const productServices = {
   createProduct,
   getAllProducts,
   getProductById,
+  updateProduct,
   deleteProduct,
 }
