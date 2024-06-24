@@ -69,6 +69,29 @@ const getProductById = async (req: Request, res: Response) => {
   }
 }
 
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params
+    const data = req.body
+    const updatedProduct = productValidationSchema.parse(data)
+    const result = await productServices.updateProduct(
+      productId,
+      updatedProduct,
+    )
+    res.json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    })
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'something went wrong',
+      data: err,
+    })
+  }
+}
+
 const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params
@@ -91,5 +114,6 @@ export const productControllers = {
   createProduct,
   getAllProducts,
   getProductById,
+  updateProduct,
   deleteProduct,
 }
