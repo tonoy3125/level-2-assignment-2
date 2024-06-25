@@ -1,13 +1,10 @@
 # Assignment 2 - Product Management Backend Application
-***
 
-### Description
-***
+# Description
 
 This project is a backend application built using Node.js, Express, and TypeScript. It utilizes Mongoose for MongoDB interactions, CORS for cross-origin resource sharing, and Zod for schema validation. This README file will guide you on how to set up and run this application locally.
 
-### Required !!!
-***
+# Required !!!
 
 Before you begin, ensure you have met the following requirements:
 
@@ -15,8 +12,7 @@ Before you begin, ensure you have met the following requirements:
 - **npm (v6 or higher)**
 - **MongoDB (either local or remote instance)**
 
-### Installation
-***
+# Installation
 
 1. Clone the repository:
 
@@ -44,8 +40,7 @@ DB_URL=mongodb://localhost:27017/mydatabase
 PORT=5000
 ```
 
-### Running the Application
-***
+# Running the Application
 
 #### In Development Mode
 
